@@ -23,11 +23,7 @@ class myPromise {
     let ref
     let res = new myPromise(() => {})
     timer = setInterval(() => {
-      if (
-        (this._state === myPromise.FULFILLED &&
-          typeof onFulfilled === 'function') ||
-        (this._state === myPromise.REJECTED && typeof onRejected === 'function')
-      ) {
+      if ((this._state === myPromise.FULFILLED && typeof onFulfilled === 'function') || (this._state === myPromise.REJECTED && typeof onRejected === 'function')) {
         clearInterval(timer)
         try {
           if (this._state === myPromise.FULFILLED) {
@@ -37,15 +33,12 @@ class myPromise {
           }
           if (ref instanceof myPromise) {
             timer = setInterval(() => {
-              if (
-                ref._state === ref.FULFILLED ||
-                ref._state === myPromise.REJECTED
-              ) {
+              if ((ref._state === ref.FULFILLED) || (ref._state === myPromise.REJECTED)) {
                 res._state = ref._state
                 res._value = ref.value
                 clearInterval(timer)
               }
-            }, 0)
+            }, 0);
           } else {
             res._state = myPromise.FULFILLED
             res._value = ref
@@ -55,9 +48,9 @@ class myPromise {
           res._value = ref
         }
       }
-    }, 0)
+    }, 0);
     return res
-  }
+  }111
 }
 
 new myPromise((resolve) => {
@@ -65,21 +58,22 @@ new myPromise((resolve) => {
   setTimeout(() => {
     resolve('success')
     console.log(2)
-  }, 0)
+  }, 0);
   console.log(3)
-}).then((res) => {
+}).then(res => {
   console.log(res)
 })
 console.log(4)
+
 
 new Promise((resolve) => {
   console.log(1)
   setTimeout(() => {
     resolve('success')
     console.log(2)
-  }, 0)
+  }, 0);
   console.log(3)
-}).then((res) => {
+}).then(res => {
   console.log(res)
 })
-console.log(44)
+console.log(47)
